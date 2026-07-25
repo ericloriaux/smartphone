@@ -7,6 +7,20 @@ Le fichier Markdown est la source de vérité. Un export PDF avec Pandoc ne doit
 être généré qu'à la demande explicite d'Eric. Les entrées les plus récentes sont
 placées en haut.
 
+## 2026-07-25 22:25 - Validation après redémarrage de Codex
+
+- Action utilisateur : redémarrage de ChatGPT Codex, puis fermeture volontaire
+  de l'émulateur Android.
+- Résultat PATH :
+  - `flutter --version` fonctionne directement et retourne Flutter 3.44.8 ;
+  - `dart --version` fonctionne directement et retourne Dart 3.12.2 ;
+  - `adb devices` fonctionne directement.
+- Résultat ADB : aucun appareil listé, état cohérent avec la fermeture de
+  l'émulateur Android par Eric.
+- Git : branche `main` alignée sur `origin/main`, aucun changement local avant
+  cette entrée de journal.
+- Lecteur de substitution `S:` encore présent dans la session Windows.
+
 ## 2026-07-25 22:18 - Validation Android Lint
 
 - Première commande : `gradlew.bat lintDebug`.
