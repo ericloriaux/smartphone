@@ -22,8 +22,17 @@
 - Le projet sert d'abord à étudier, comparer, prototyper puis éventuellement
   développer des applications pour smartphones.
 - Android est la cible prioritaire.
+- Les premiers prototypes et essais doivent être construits, installés et testés
+  sous Android, notamment sur le smartphone physique dont Eric dispose.
+- Ne pas engager de configuration, compilation ou publication iOS pendant cette
+  première phase, sauf nouvelle demande explicite d'Eric.
 - Une solution commune Android/iPhone doit être étudiée lorsqu'elle est réaliste,
   sans sacrifier un besoin Android essentiel.
+- Conserver la compatibilité iPhone comme objectif ultérieur. Si la pile choisie
+  le permet, GitHub Actions sur runner macOS constitue la première option de
+  compilation iOS distante pour le dépôt public ; Codemagic reste une solution de
+  repli spécialisée. La signature et la publication resteront soumises aux
+  exigences Apple, et un build distant ne remplace pas un test iOS interactif.
 - Au 25 juillet 2026, aucun framework, langage applicatif, niveau d'API Android,
   architecture, service cloud ou modèle de distribution n'est encore retenu.
 - Ne pas transformer une discussion exploratoire en choix technologique implicite.

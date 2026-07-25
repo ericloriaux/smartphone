@@ -1,5 +1,21 @@
 # Journal des changements du projet Smartphone
 
+## 2026-07-25 21:03 - Priorité donnée aux essais Android
+
+- Fichiers concernés : `AGENTS.md`,
+  `documentation/decisions/ADR-0001-priorite-android.md` et
+  `documentation/PROGRAM_CHANGES.md`.
+- Changement visible : les premiers prototypes seront installés et testés sur le
+  smartphone Android physique d'Eric.
+- Changement technique : la chaîne iOS n'est pas configurée pendant la première
+  phase ; la compatibilité future reste un critère de sélection et la compilation
+  distante via GitHub Actions est conservée comme option.
+- Impact documentaire : création de la première décision d'architecture.
+- Raison : commencer avec la plateforme réellement disponible tout en évitant de
+  fermer la voie à une version iPhone ultérieure.
+- Vérifications : cohérence contrôlée avec la priorité Android et les limites iOS
+  déjà documentées dans `AGENTS.md`.
+
 ## 2026-07-25 20:35 - Initialisation des règles du projet
 
 - Fichiers concernés : `AGENTS.md`, `.gitignore` et
