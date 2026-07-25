@@ -33,8 +33,10 @@
   compilation iOS distante pour le dépôt public ; Codemagic reste une solution de
   repli spécialisée. La signature et la publication resteront soumises aux
   exigences Apple, et un build distant ne remplace pas un test iOS interactif.
-- Au 25 juillet 2026, aucun framework, langage applicatif, niveau d'API Android,
-  architecture, service cloud ou modèle de distribution n'est encore retenu.
+- Au 25 juillet 2026, Flutter 3.44.8 avec Dart 3.12.2 est la pile expérimentale
+  installée et validée pour les premiers essais Android. Ce choix d'essai ne
+  constitue pas encore une décision définitive d'architecture ou de
+  distribution.
 - Ne pas transformer une discussion exploratoire en choix technologique implicite.
   Documenter toute décision structurante dans `documentation/decisions/` sous
   forme d'ADR court : contexte, options, décision, raisons, conséquences et date.
@@ -182,6 +184,16 @@ Si des scripts Python sont ajoutés :
 
 - Les Markdown sont les sources de vérité ; DOCX, PDF et PPTX sont des exports
   régénérables sauf décision explicite contraire.
+- Maintenir `documentation/INSTALLATION_TEST_JOURNAL.md` comme journal
+  chronologique détaillé de toutes les installations, configurations et
+  validations réalisées pour le projet.
+- Chaque entrée de ce journal doit indiquer au minimum la date et l'heure, l'outil
+  ou le test, la version et le chemin concernés, les commandes ou actions
+  importantes, le résultat réel, ainsi que les incidents et solutions vérifiées.
+- Mettre le journal à jour pendant la tâche afin de conserver aussi les essais
+  infructueux utiles au diagnostic, et pas uniquement le résultat final.
+- Le Markdown de ce journal reste la source de vérité. Ne générer son export PDF
+  avec Pandoc que si Eric le demande explicitement.
 - Corriger la source puis régénérer un PDF ; ne pas modifier le PDF à la main.
 - Après une modification significative d'un PDF, rendre les pages en images et
   vérifier visuellement coupures, chevauchements, glyphes, pages blanches,
@@ -254,6 +266,48 @@ validation d'un outil.
   `C:\Program Files\Java\jdk-25.0.3\bin\java.exe` et
   `C:\Program Files\Java\jdk-25.0.3\bin\javac.exe`. `JAVA_HOME` pointe vers ce
   JDK. Validation : `java -version` et `javac -version`, 25 juillet 2026.
+- Flutter utilise toutefois le JetBrains Runtime OpenJDK 21.0.10 fourni avec
+  Android Studio, configuré par `flutter config --jdk-dir` :
+  `C:\Program Files\Android\Android Studio\jbr\bin\java.exe`.
+- Flutter 3.44.8, canal `stable` :
+  `C:\Users\Eric\develop\flutter\bin\flutter.bat`.
+- Dart 3.12.2, fourni par Flutter :
+  `C:\Users\Eric\develop\flutter\bin\cache\dart-sdk\bin\dart.exe`.
+- Flutter DevTools 2.57.0 est fourni dans le SDK Flutter. La télémétrie Flutter
+  a été désactivée avec `flutter config --no-analytics`.
+- Android Studio 2026.1.2.10 :
+  `C:\Program Files\Android\Android Studio\bin\studio64.exe`.
+- Android SDK :
+  `C:\Users\Eric\AppData\Local\Android\Sdk`. `ANDROID_HOME` pointe vers ce
+  dossier.
+- Android SDK Command-line Tools 22.0 :
+  `C:\Users\Eric\AppData\Local\Android\Sdk\cmdline-tools\latest\bin\sdkmanager.bat`.
+- Android Platform Tools 37.0.0 et ADB 1.0.41, build 14910828 :
+  `C:\Users\Eric\AppData\Local\Android\Sdk\platform-tools\adb.exe`.
+- Android Emulator 36.6.11, build 15507667 :
+  `C:\Users\Eric\AppData\Local\Android\Sdk\emulator\emulator.exe`.
+- Android Platform API 36 révision 2 et Build Tools 36.0.0 sont installés.
+- Image système Android 16/API 36 Google APIs x86_64 révision 7 :
+  `C:\Users\Eric\AppData\Local\Android\Sdk\system-images\android-36\google_apis\x86_64`.
+- NDK Android 28.2.13676358 et CMake 3.22.1 sont installés sous le SDK Android.
+- Appareil virtuel validé : `Smartphone_Pixel_7_API_36`, profil Pixel 7,
+  Android 16/API 36, Google APIs x86_64 :
+  `C:\Users\Eric\.android\avd\Smartphone_Pixel_7_API_36.avd`.
+  L'accélération WHPX 10.0.26200 et le rendu matériel sur NVIDIA GeForce RTX
+  2060 sont opérationnels.
+- Gradle 9.1.0 est utilisé via le wrapper du prototype Flutter ; ne pas installer
+  Gradle globalement.
+- Le trafic HTTPS est inspecté par Norton. Pour Gradle, le certificat public
+  `Norton Web/Mail Shield Root`, déjà approuvé par Windows, a été ajouté à une
+  copie dédiée du magasin JBR :
+  `C:\Users\Eric\.gradle\truststores\jbr-plus-windows-cacerts.p12`.
+  La variable utilisateur `GRADLE_OPTS` référence ce magasin sans désactiver la
+  vérification TLS.
+- Le chemin racine contient le caractère `$`, que `flutter test` 3.44.8 n'échappe
+  pas correctement dans son fichier Dart temporaire. La substitution de lecteur
+  vérifiée pour les commandes Flutter est
+  `subst S: "D:\$rapatries\Documents\Codex\Smartphone"`, puis exécution depuis
+  `S:\...`. Cette association doit être recréée après un redémarrage de Windows.
 - Node.js 24.18.0 : `C:\Program Files\nodejs\node.exe`.
 - npm 11.16.0 : `C:\Program Files\nodejs\npm.cmd`.
 - .NET SDK 10.0.302 : `C:\Program Files\dotnet\dotnet.exe`.
@@ -263,12 +317,14 @@ validation d'un outil.
   `C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe`.
 - Visual Studio Code 1.128.1 :
   `C:\Users\Eric\AppData\Local\Programs\Microsoft VS Code\Code.exe`.
+- Extensions VS Code Flutter 3.138.0 (`dart-code.flutter`) et Dart 3.138.0
+  (`dart-code.dart-code`) installées et validées.
 - Aucun workload .NET mobile n'est installé selon `dotnet workload list`.
-- Non détectés dans le `PATH` ni dans leurs emplacements Windows usuels :
-  Android Studio, Android SDK, ADB, Android Emulator, `sdkmanager`, Gradle,
-  Kotlin, Flutter, Dart, pnpm, Yarn, Bun, Expo CLI, EAS CLI et React Native CLI.
-  Ne leur attribuer aucune version et ne pas supposer qu'un build mobile est
-  possible avant installation et validation.
+- Le `PATH` utilisateur contient désormais Flutter, `platform-tools` et
+  `cmdline-tools\latest\bin`. Une application déjà ouverte avant la modification
+  doit être redémarrée pour voir ce nouveau `PATH`.
+- Non installés ou non validés à ce stade : Gradle global, Kotlin global, pnpm,
+  Yarn, Bun, Expo CLI, EAS CLI et React Native CLI.
 - Xcode n'est pas disponible sur Windows.
 
 ### Outils généraux et documentaires utiles

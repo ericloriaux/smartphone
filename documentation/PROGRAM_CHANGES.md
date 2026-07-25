@@ -1,5 +1,50 @@
 # Journal des changements du projet Smartphone
 
+## 2026-07-25 22:04 - Environnement Flutter Android installé et validé
+
+- Fichiers concernés : `AGENTS.md`,
+  `documentation/INSTALLATION_TEST_JOURNAL.md`,
+  `documentation/PROGRAM_CHANGES.md` et
+  `experiments/hello_flutter/`.
+- Changement visible : un Pixel 7 virtuel sous Android 16/API 36 démarre sous
+  Windows et affiche le premier écran Flutter; son compteur réagit au bouton `+`.
+- Changement technique : installation et validation de Flutter 3.44.8, Dart
+  3.12.2, Android Studio 2026.1.2.10, Android SDK/API 36, ADB, émulateur, image
+  x86_64, JBR 21, Gradle 9.1, NDK 28.2 et CMake 3.22.1; ajout des extensions VS
+  Code Flutter et Dart; conservation du wrapper Gradle dans le prototype pour
+  éviter toute dépendance à une installation Gradle globale.
+- Incidents documentés : premier démarrage ADB lent, avertissement protobuf sans
+  corruption de l'image, fenêtre hors écran, ralentissement de System UI,
+  caractère `$` non échappé par `flutter test` et certificat Norton absent du
+  magasin Java.
+- Solutions : démarrage à froid sans instantané, remise en place de la fenêtre,
+  choix `Wait`, lecteur `subst S:`, JBR Android Studio et magasin de confiance
+  Gradle dédié sans désactivation TLS.
+- Vérifications : `flutter doctor` valide Android; `flutter analyze`,
+  `flutter test` et `gradlew.bat lintDebug --rerun-tasks` réussissent; APK Debug
+  compilé, installé et lancé; activité et paquet contrôlés avec ADB; compteur
+  passé de 0 à 1 et rendu inspecté.
+- Documentation : inventaire et journal d'installation détaillés mis à jour.
+  Aucun PDF Pandoc généré.
+- Raison : disposer d'une première chaîne Android reproductible avant de
+  développer les essais d'applications.
+
+## 2026-07-25 21:14 - Création du journal des installations et tests
+
+- Fichiers concernés : `AGENTS.md`,
+  `documentation/INSTALLATION_TEST_JOURNAL.md` et
+  `documentation/PROGRAM_CHANGES.md`.
+- Changement visible : création d'une mémoire chronologique dédiée aux
+  installations, configurations, essais, incidents et solutions.
+- Changement technique : obligation de consigner versions, chemins, commandes
+  importantes et résultats réellement vérifiés.
+- Impact documentaire : le Markdown devient la source de vérité de ce journal ;
+  aucun export PDF Pandoc ne doit être produit sans demande explicite d'Eric.
+- Raison : permettre de reproduire ultérieurement l'environnement et de retrouver
+  l'historique exact des essais.
+- Vérifications : les opérations Flutter déjà réalisées le 25 juillet 2026 ont
+  été reportées rétroactivement.
+
 ## 2026-07-25 21:03 - Priorité donnée aux essais Android
 
 - Fichiers concernés : `AGENTS.md`,
