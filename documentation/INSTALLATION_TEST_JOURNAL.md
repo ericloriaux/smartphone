@@ -7,6 +7,36 @@ Le fichier Markdown est la source de vérité. Un export PDF avec Pandoc ne doit
 être généré qu'à la demande explicite d'Eric. Les entrées les plus récentes sont
 placées en haut.
 
+## 2026-07-31 01:09 - Extension du lecteur virtuel S: aux projets Codex
+
+- Outil : commande Windows intégrée `subst`.
+- Ancienne association :
+  `S:\` vers `D:\$rapatries\Documents\Codex\Smartphone`.
+- Nouvelle association :
+  `S:\` vers `D:\$rapatries\Documents\Codex`.
+- Commandes PowerShell importantes :
+  - `subst S: /D` pour retirer uniquement l'ancienne association virtuelle ;
+  - `subst S: 'D:\$rapatries\Documents\Codex'` pour créer l'association commune.
+- Motivation : conserver le contournement du défaut Flutter 3.44.8 avec le
+  caractère `$` tout en permettant l'emploi de `S:` par les autres projets
+  placés dans le dossier Codex.
+- Chemin Flutter du projet Smartphone après le changement :
+  `S:\Smartphone\experiments\calculator_flutter`.
+- Vérifications :
+  - `subst` retourne
+    `S:\: => D:\$rapatries\Documents\Codex` ;
+  - `S:\Smartphone` existe ;
+  - `S:\Smartphone\experiments\calculator_flutter` existe ;
+  - `flutter test`, exécuté depuis ce nouveau chemin, réussit les 7 tests.
+- Incident utile : une première commande utilisant des guillemets doubles sous
+  PowerShell a interprété `$rapatries` comme une variable et produit
+  momentanément l'association incorrecte `S:\` vers `D:\Documents\Codex`.
+  L'association a été retirée puis recréée avec des apostrophes. Aucun fichier
+  réel n'a été déplacé, copié, modifié ou supprimé par `subst`.
+- Persistance : l'association devra être recréée après un redémarrage de
+  Windows.
+- Aucun PDF Pandoc généré.
+
 ## 2026-07-31 01:04 - Prototype Calculatrice Flutter
 
 - Projet créé :

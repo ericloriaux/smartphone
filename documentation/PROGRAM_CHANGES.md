@@ -1,5 +1,26 @@
 # Journal des changements du projet Smartphone
 
+## 2026-07-31 01:09 - Extension du lecteur virtuel S: aux projets Codex
+
+- Fichiers concernés : `AGENTS.md`,
+  `documentation/INSTALLATION_TEST_JOURNAL.md` et
+  `documentation/PROGRAM_CHANGES.md`.
+- Changement visible : `S:` représente désormais le dossier commun
+  `D:\$rapatries\Documents\Codex`; le projet Smartphone est accessible sous
+  `S:\Smartphone`.
+- Changement technique : remplacement de l'association `subst` limitée au
+  projet Smartphone par une association réutilisable pour les autres projets
+  Codex. La commande documentée emploie des apostrophes PowerShell afin de
+  préserver littéralement le caractère `$`.
+- Incident documenté : association transitoire incorrecte vers
+  `D:\Documents\Codex`, immédiatement retirée sans modification des fichiers.
+- Vérifications : association retournée par `subst`, existence de
+  `S:\Smartphone` et du prototype `S:\Smartphone\experiments\calculator_flutter`,
+  puis 7 tests Flutter réussis depuis ce nouveau chemin.
+- Raison : rendre le contournement du défaut Flutter lié au caractère `$`
+  commun à l'ensemble des projets d'Eric.
+- Aucun PDF Pandoc généré.
+
 ## 2026-07-31 01:04 - Ajout du prototype Calculatrice Flutter
 
 - Fichiers concernés : `experiments/calculator_flutter/`,

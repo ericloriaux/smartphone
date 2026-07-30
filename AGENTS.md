@@ -306,8 +306,11 @@ validation d'un outil.
 - Le chemin racine contient le caractère `$`, que `flutter test` 3.44.8 n'échappe
   pas correctement dans son fichier Dart temporaire. La substitution de lecteur
   vérifiée pour les commandes Flutter est
-  `subst S: "D:\$rapatries\Documents\Codex\Smartphone"`, puis exécution depuis
-  `S:\...`. Cette association doit être recréée après un redémarrage de Windows.
+  `subst S: 'D:\$rapatries\Documents\Codex'`, puis exécution du projet Smartphone
+  depuis `S:\Smartphone\...`. Les apostrophes empêchent PowerShell d'interpréter
+  `$rapatries` comme une variable. Cette association commune peut également
+  servir aux autres projets placés sous `D:\$rapatries\Documents\Codex` et doit
+  être recréée après un redémarrage de Windows.
 - Node.js 24.18.0 : `C:\Program Files\nodejs\node.exe`.
 - npm 11.16.0 : `C:\Program Files\nodejs\npm.cmd`.
 - .NET SDK 10.0.302 : `C:\Program Files\dotnet\dotnet.exe`.
