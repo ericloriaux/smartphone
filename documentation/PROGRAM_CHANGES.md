@@ -1,5 +1,24 @@
 # Journal des changements du projet Smartphone
 
+## 2026-07-31 01:23 - Première installation sur téléphone Android physique
+
+- Fichiers concernés : `documentation/INSTALLATION_TEST_JOURNAL.md` et
+  `documentation/PROGRAM_CHANGES.md`.
+- Changement visible : la version Debug de `Calculatrice d'Eric Loriaux` est
+  installée et s'ouvre sur le Motorola Edge 50 Ultra d'Eric.
+- Changement technique : appareil Android 16/API 36 ARM64 autorisé par
+  débogage USB, APK installé par ADB sous le paquet
+  `com.ericloriaux.calculator_flutter`.
+- Vérifications : appareil reconnu par ADB et Flutter, installation `Success`,
+  activité au premier plan, titre et affichage initial `0` retrouvés dans la
+  hiérarchie réelle de l'interface.
+- Incidents documentés : délai de `flutter run` et première tentative de
+  lancement avec l'identifiant générique incorrect.
+- Note PO/FA : le prototype n'est plus limité à l'émulateur ; il peut maintenant
+  être montré et essayé sur le téléphone réel. Il s'agit encore d'une version
+  Debug, pas d'une version de production ou destinée au Play Store.
+- Aucun PDF Pandoc généré.
+
 ## 2026-07-31 01:09 - Extension du lecteur virtuel S: aux projets Codex
 
 - Fichiers concernés : `AGENTS.md`,

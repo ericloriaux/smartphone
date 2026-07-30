@@ -7,6 +7,43 @@ Le fichier Markdown est la source de vérité. Un export PDF avec Pandoc ne doit
 être généré qu'à la demande explicite d'Eric. Les entrées les plus récentes sont
 placées en haut.
 
+## 2026-07-31 01:23 - Première installation sur le Motorola physique
+
+- Cible : Motorola Edge 50 Ultra, Android 16/API 36, architecture ARM64.
+- Préparation effectuée par Eric sur le téléphone :
+  - activation des options pour les développeurs ;
+  - activation du débogage USB ;
+  - connexion USB et autorisation de l'ordinateur.
+- Détection :
+  - `adb devices -l` retourne le téléphone dans l'état `device` ;
+  - `flutter devices` identifie le Motorola comme cible Android ARM64 ;
+  - le numéro de série matériel n'est pas consigné dans Git.
+- Projet :
+  `S:\Smartphone\experiments\calculator_flutter`.
+- APK Debug :
+  `build\app\outputs\flutter-apk\app-debug.apk`, 75 530 239 octets.
+- Installation :
+  `adb -s <appareil> install -r <app-debug.apk>` retourne `Success`.
+- Paquet Android installé :
+  `com.ericloriaux.calculator_flutter`.
+- Validation sur l'appareil physique :
+  - l'activité `com.ericloriaux.calculator_flutter.MainActivity` est au premier
+    plan ;
+  - la hiérarchie Android de l'interface contient le titre
+    `Calculatrice d'Eric Loriaux` ;
+  - l'affichage initial `0` est présent.
+- Incidents et solutions :
+  - `flutter run --debug --no-resident` a dépassé la limite locale de 124
+    secondes sans restituer sa sortie, mais avait produit l'APK ; installation
+    finalisée directement avec ADB ;
+  - une première commande de lancement utilisait l'identifiant Flutter
+    générique `com.example.calculator_flutter` et n'a trouvé aucune activité ;
+    relance réussie avec l'identifiant réel
+    `com.ericloriaux.calculator_flutter`.
+- Résultat : la calculatrice Debug est installée et ouverte sur le téléphone
+  physique. Elle reste utilisable après déconnexion du câble USB.
+- Aucun PDF Pandoc généré.
+
 ## 2026-07-31 01:09 - Extension du lecteur virtuel S: aux projets Codex
 
 - Outil : commande Windows intégrée `subst`.
