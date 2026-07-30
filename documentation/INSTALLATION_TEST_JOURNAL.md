@@ -7,6 +7,46 @@ Le fichier Markdown est la source de vérité. Un export PDF avec Pandoc ne doit
 être généré qu'à la demande explicite d'Eric. Les entrées les plus récentes sont
 placées en haut.
 
+## 2026-07-31 01:04 - Prototype Calculatrice Flutter
+
+- Projet créé :
+  `D:\$rapatries\Documents\Codex\Smartphone\experiments\calculator_flutter`.
+- Objectif : deuxième prototype Flutter Android, plus proche d'une vraie app que
+  le compteur initial.
+- Fonctionnalités :
+  - calculatrice simple avec `+`, `-`, `×`, `÷`, `=`, `C`, retour arrière,
+    inversion de signe et virgule décimale ;
+  - titre visible : `Calculatrice d'Eric Loriaux` ;
+  - icône de lancement Android personnalisée à partir de l'image fournie par
+    Eric ;
+  - logique séparée dans `lib/calculator_engine.dart` ;
+  - interface dans `lib/main.dart`.
+- Ressources graphiques :
+  - source conservée :
+    `experiments/calculator_flutter/assets/icons/eric_loriaux_launcher_source.png` ;
+  - icônes Android générées dans les dossiers `mipmap-mdpi`, `mipmap-hdpi`,
+    `mipmap-xhdpi`, `mipmap-xxhdpi` et `mipmap-xxxhdpi`.
+- Validations Flutter :
+  - `dart format lib test` ;
+  - `flutter analyze` : aucun problème ;
+  - `flutter test` : 7 tests réussis.
+- Validations Android :
+  - `flutter build apk --debug` : APK généré ;
+  - `flutter run -d emulator-5554 --debug --no-resident` : app installée et
+    lancée sur `emulator-5554` ;
+  - test ADB `2 + 3 = 5` : titre et affichage vérifiés par `uiautomator dump` ;
+  - `gradlew.bat lintDebug --rerun-tasks` : `BUILD SUCCESSFUL`.
+- Capture de validation conservée localement hors Git :
+  `tmp/test-results/calculator_flutter.png`.
+- Incidents et solutions :
+  - fenêtre d'émulateur à nouveau ouverte hors écran, replacée à `Left=25`,
+    `Top=25`, `Width=420`, `Height=850` avec l'API Win32 `MoveWindow` ;
+  - dialogue `System UI isn't responding`, résolu par le choix `Wait` ;
+  - `android/local.properties`, ignoré par Git, est réécrit par Flutter avec des
+    chemins Windows qui font échouer Android Lint ; correction locale appliquée
+    avant le lint final.
+- Aucun PDF Pandoc généré.
+
 ## 2026-07-25 22:25 - Validation après redémarrage de Codex
 
 - Action utilisateur : redémarrage de ChatGPT Codex, puis fermeture volontaire

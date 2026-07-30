@@ -1,5 +1,28 @@
 # Journal des changements du projet Smartphone
 
+## 2026-07-31 01:04 - Ajout du prototype Calculatrice Flutter
+
+- Fichiers concernés : `experiments/calculator_flutter/`,
+  `documentation/INSTALLATION_TEST_JOURNAL.md` et
+  `documentation/PROGRAM_CHANGES.md`.
+- Changement visible : ajout d'une app Android Flutter intitulée
+  `Calculatrice d'Eric Loriaux`, avec boutons de calcul, affichage, gestion des
+  décimales à virgule, division par zéro et icône de lancement personnalisée.
+- Changement technique : séparation de la logique dans
+  `lib/calculator_engine.dart`, interface Flutter dans `lib/main.dart`, tests
+  unitaires et widget tests, conservation de l'image source de l'icône et
+  génération des densités Android.
+- Incidents documentés : fenêtre d'émulateur hors écran, ralentissement
+  `System UI`, et réécriture locale de `android/local.properties` par Flutter
+  avant le lint.
+- Vérifications : `flutter analyze`, `flutter test`, `flutter build apk
+  --debug`, installation/lancement sur `emulator-5554`, test ADB `2 + 3 = 5`,
+  capture visuelle et `gradlew.bat lintDebug --rerun-tasks`.
+- Documentation : README du prototype et journal d'installation/test mis à jour.
+  Aucun PDF Pandoc généré.
+- Raison : disposer d'un premier prototype applicatif compréhensible pour
+  apprendre Flutter avec une logique métier testable et une interface Android.
+
 ## 2026-07-25 22:04 - Environnement Flutter Android installé et validé
 
 - Fichiers concernés : `AGENTS.md`,
